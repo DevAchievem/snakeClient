@@ -12,10 +12,19 @@ const connect = function() {
   client.on('connect', () => {
     client.write("Name: MEJ");
     console.log("connection has been established!");
+    // setInterval(() => {
+    //   client.write("Move: up");
+    // }, 50);
     stdin.on('data', data => {
       client.write(data);
     });
+    client.on('data', (data) => {
+      console.log("Server sent us data: ", data);
+    });
   });
+
+
+
   // handle messages sent to client
 
   return client;
